@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: background-image 0.5s ease-in-out;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .message-form {
+            margin-top: 20px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                width: 100%;
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>联系我</h1>
+        <p>点击以下邮箱给我发邮件:</p>
+        <p><a href="mailto:xxxu@xxxu.me">xxxu@xxxu.me</a></p>
+
+        <div class="message-form">
+            <h2>给我留言</h2>
+            <div class="commentbox"></div>
+        </div>
+    </div>
+
+    <!-- 引入 CommentBox 的脚本 -->
+    <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
+    <script>
+        commentBox('5652367978528768-proj');
+    </script>
+
+    <!-- 必应每日壁纸 API 自动更换背景 -->
+    <script>
+        async function setBingBackground() {
+            try {
+                const response = await fetch('https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1');
+                const data = await response.json();
+                const wallpaperUrl = `https://www.bing.com${data.images[0].url}`;
+                document.body.style.backgroundImage = `url(${wallpaperUrl})`;
+            } catch (error) {
+                console.error('获取必应壁纸失败:', error);
+            }
+        }
+        setBingBackground();
+    </script>
+</body>
+</html>
